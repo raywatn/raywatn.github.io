@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Affiliate setup — FlyStay</title><link rel="stylesheet" href="styles.css">
+<style>
+.setup{max-width:850px;padding:55px 0 90px}.setup h1{font-size:clamp(42px,7vw,68px);letter-spacing:-3px;margin:28px 0}.setup p{color:#64716e;line-height:1.8}.setup-card{background:#fff;border:1px solid #e3e8e4;border-radius:14px;padding:22px;margin:20px 0}.setup-card h2{font:600 20px "Space Grotesk"}.setup label{display:block;font-size:11px;font-weight:700;letter-spacing:.8px;color:#61716d;margin:14px 0 6px}.setup input,.setup textarea{width:100%;border:1px solid #dfe6e1;border-radius:8px;padding:12px;font:13px "DM Sans";color:#13242b}.setup textarea{min-height:80px}.setup button{background:#102b35;color:#a9f0d1;border:0;border-radius:30px;padding:13px 20px;font-weight:700;cursor:pointer}.setup pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101c28;color:#c9f4df;padding:16px;border-radius:10px;font-size:12px}.hint{font-size:12px!important}.notice{background:#eaf7f0;border-left:3px solid #399a7b;padding:13px 16px;border-radius:6px;color:#294e42!important}
+</style></head>
+<body><header class="nav-wrap" style="position:relative;background:#0b1220"><nav class="nav container"><a class="brand" href="index.html"><span class="brand-mark">✦</span> fly<span>stay</span></a><a class="nav-cta" href="index.html">Back to site ↗</a></nav></header>
+<main class="container setup">
+<div class="section-kicker">PARTNER CONFIGURATION</div><h1>Make every search<br><em>trackable.</em></h1>
+<p>This setup page prepares your Awin tracking configuration. It does not connect to Awin or create commissions by itself. First, your publisher account must be approved and you must be accepted into each advertiser programme.</p>
+<p class="notice"><strong>Before approval:</strong> leave these fields empty. The public site will use standard Google Travel search links and clearly tell visitors that affiliate tracking is not active yet.</p>
+<div class="setup-card">
+<h2>Step 1 — Apply to Awin</h2>
+<p>Register as a Publisher and use your live FlyStay website URL as the Promotional Space URL. If the site is not published yet, publish it first using GitHub Pages or Cloudflare Pages.</p>
+<p><a class="text-link" href="https://ui.awin.com/publisher-signup" target="_blank" rel="noopener">Open Awin Publisher Signup ↗</a></p>
+<p class="hint">Awin asks publishers for a promotional space such as a website or social channel. Payment/tax details are required before receiving payments. Any signup deposit or verification amount, if shown for your region, will be displayed in Awin's own form; check it before paying.</p>
+</div>
+<div class="setup-card">
+<h2>Step 2 — After Awin approves you</h2>
+<p>Join a travel advertiser programme in Awin. Copy your Publisher ID and that advertiser's Advertiser ID (MID). Ask the advertiser or Awin for a supported flight/hotel search landing URL format that accepts destination and dates.</p>
+<label for="pub">Awin Publisher ID (awinaffid)</label><input id="pub" placeholder="Your publisher ID">
+<label for="flightmid">Flight advertiser ID (awinmid)</label><input id="flightmid" placeholder="Advertiser MID for flights">
+<label for="hotelmid">Hotel advertiser ID (awinmid)</label><input id="hotelmid" placeholder="Advertiser MID for hotels">
+<label for="flighttemplate">Flight destination URL template</label><textarea id="flighttemplate" placeholder="https://partner.example/search?from={origin}&to={destination}&depart={depart}&return={return}"></textarea>
+<p class="hint">Use the exact URL pattern supplied/approved by the flight advertiser. Placeholders: {origin}, {destination}, {depart}, {return}.</p>
+<label for="hoteltemplate">Hotel destination URL template</label><textarea id="hoteltemplate" placeholder="https://partner.example/hotels/{destination}?checkin={checkin}&checkout={checkout}&guests={guests}"></textarea>
+<p class="hint">Use the exact URL pattern supplied/approved by the hotel advertiser. Placeholders: {destination}, {checkin}, {checkout}, {guests}.</p>
+<button id="generate">Generate config.js settings</button>
+</div>
+<div class="setup-card" id="output-card" hidden><h2>Step 3 — Copy these settings into config.js</h2><p>Replace the matching settings in the website's config.js file with the generated values, save, and upload the updated file to your website.</p><pre id="output"></pre><button id="copy">Copy settings</button></div>
+<div class="setup-card"><h2>Important</h2><p>Awin's standard deeplink structure uses your Publisher ID, the advertiser's MID and an encoded destination URL. Some advertisers do not allow deeplinking or require specific search URL formats. The link will only track if the advertiser programme is approved and its terms permit your promotional method.</p><p><a class="text-link" href="https://success.awin.com/s/article/What-does-an-affiliate-link-look-like" target="_blank" rel="noopener">Awin: affiliate link format ↗</a> · <a class="text-link" href="https://www.awin.com/gb/faqs" target="_blank" rel="noopener">Awin FAQ ↗</a></p></div>
+</main><script>
+const $=id=>document.getElementById(id);
+let snippet="";
+$("generate").addEventListener("click",()=>{
+ const v={pub:$("pub").value.trim(),fm:$("flightmid").value.trim(),hm:$("hotelmid").value.trim(),ft:$("flighttemplate").value.trim(),ht:$("hoteltemplate").value.trim()};
+ if(!v.pub||!v.fm||!v.hm||!v.ft||!v.ht){alert("กรอกข้อมูลให้ครบก่อน โดยใช้ข้อมูลจริงจาก Awin และ URL ที่ Partner อนุญาต");return;}
+ const q=s=>JSON.stringify(s);
+ snippet=`awinPublisherId: ${q(v.pub)},\nflightAdvertiserId: ${q(v.fm)},\nhotelAdvertiserId: ${q(v.hm)},\nflightLandingUrlTemplate: ${q(v.ft)},\nhotelLandingUrlTemplate: ${q(v.ht)},`;
+ $("output").textContent=snippet;$("output-card").hidden=false;
+});
+$("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(snippet);alert("Copied. Paste these lines into config.js.");}catch(e){alert("Select and copy the text manually.");}});
+</script></body></html>
