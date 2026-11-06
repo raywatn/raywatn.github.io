@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="FlyStay — find flights, stays and little moments worth travelling for.">
+<meta name="theme-color" content="#f7f7f2">
+<title>FlyStay — Go places. Feel more.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><nav class="nav wrap"><a class="logo" href="#"><span class="logo-icon">✳</span> flystay<span class="logo-dot">.</span></a>
+<div class="navlinks"><a href="#discover">Discover</a><a href="#why">Why FlyStay</a><a href="#about">About</a></div><a class="navbtn" href="#search">Plan your trip <span>↗</span></a><button class="menu" aria-label="Open menu">☰</button></nav></header>
+<main>
+<section class="hero">
+ <div class="hero-bg"></div><div class="wrap hero-content">
+  <div class="eyebrow"><i></i> YOUR PASSPORT TO WHAT'S NEXT</div>
+  <h1>Go places.<br><span>Feel more.</span></h1>
+  <p class="hero-sub">Big trips, quick getaways, spontaneous weekends. Your next story starts here.</p>
+  <div class="hero-ctas"><a class="primary" href="#search">Find your next trip <b>↗</b></a><a class="text-cta" href="#discover">Get inspired <span>↓</span></a></div>
+  <div class="hero-meta"><span>✈ FLIGHTS THAT TAKE YOU FURTHER</span><span>⌂ STAYS THAT FEEL JUST RIGHT</span></div>
+ </div>
+ <div class="hero-photo"><div class="photo-label"><span>01 / 03</span><b>Somewhere sunny?</b><small>Say less. Let's go.</small></div></div>
+ <div class="floating-note"><span>✦</span><div><b>More world.</b><small>Less what-if.</small></div></div>
+</section>
+<section class="search-wrap wrap" id="search"><div class="search-intro"><span class="eyebrow dark">LET'S MAKE IT HAPPEN</span><h2>Where to <em>next?</em></h2></div>
+ <div class="search-card"><div class="tabs"><button class="tab active" data-tab="flights">✈ Flights</button><button class="tab" data-tab="hotels">⌂ Hotels</button></div>
+ <form id="travel-search"><div class="fields">
+  <label class="field" id="origin-field"><small id="place-label">FROM</small><input id="origin" value="Bangkok (BKK)" placeholder="Departure city" required></label>
+  <label class="field"><small id="destination-label">TO</small><input id="destination" placeholder="Where are you going?" required></label>
+  <label class="field"><small id="depart-label">DEPART</small><input id="depart" type="date" required></label>
+  <label class="field" id="return-field"><small>RETURN</small><input id="return" type="date"></label>
+  <label class="field" id="guests-field" hidden><small>GUESTS</small><select id="guests"><option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option></select></label>
+ </div><div class="search-bottom"><p id="search-hint">Good trips start with a search. We'll take it from here.</p><button class="search-button" type="submit">Search flights <span>↗</span></button></div></form>
+ </div><p class="microcopy">We help you discover options from travel partners. Booking and payment happen on the provider's website.</p>
+</section>
+<section class="discover wrap" id="discover"><div class="section-top"><div><span class="eyebrow dark">THE WORLD IS WIDE OPEN</span><h2>Pick a mood.<br><em>Find a place.</em></h2></div><p>For the long weekends, the big adventures<br>and the “why not?” moments.</p></div>
+ <div class="destination-grid">
+  <a class="destination bali" href="#search" data-destination="Bali"><span class="dest-tag">SLOW DOWN</span><div><small>INDONESIA</small><h3>Bali</h3><b>Find your island time ↗</b></div></a>
+  <a class="destination tokyo" href="#search" data-destination="Tokyo"><span class="dest-tag">TURN IT UP</span><div><small>JAPAN</small><h3>Tokyo</h3><b>Chase the city lights ↗</b></div></a>
+  <a class="destination paris" href="#search" data-destination="Paris"><span class="dest-tag">FALL IN LOVE</span><div><small>FRANCE</small><h3>Paris</h3><b>Get lost beautifully ↗</b></div></a>
+ </div>
+</section>
+<section class="why" id="why"><div class="wrap why-inner"><div><span class="eyebrow">GOOD TRIPS. GOOD ENERGY.</span><h2>Less scrolling.<br><em>More exploring.</em></h2><p>FlyStay makes it easier to start planning. Search for flights or places to stay, explore ideas, then continue to a travel provider to check live prices and book.</p></div>
+ <div class="why-points"><article><b>01</b><div><h3>Start with a spark</h3><p>A city, a beach, a food craving. Every great trip starts somewhere.</p></div></article><article><b>02</b><div><h3>Explore your options</h3><p>Continue to our travel partners for current availability and prices.</p></div></article><article><b>03</b><div><h3>Make memories</h3><p>Choose the option that works for you and book directly with the provider.</p></div></article></div></div></section>
+<section class="about wrap" id="about"><div><span class="eyebrow dark">A LITTLE ABOUT US</span><h2>Made for the<br><em>curious.</em></h2></div><div><p>FlyStay is an independent travel discovery platform for people who would rather collect moments than tabs. We bring inspiration and travel search links together in one easy place.</p><p class="fine">Some links may be affiliate links. If you book through them, FlyStay may earn a commission at no extra cost to you. This does not affect the price you pay.</p></div></section>
+</main>
+<footer><div class="wrap footer"><a class="logo" href="#"><span class="logo-icon">✳</span> flystay<span class="logo-dot">.</span></a><div><a href="privacy.html">Privacy</a><a href="disclosure.html">Affiliate disclosure</a><a href="mailto:hello@flystay.example">Contact</a></div><small>© <span id="year"></span> FlyStay. Go well.</small></div></footer>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
